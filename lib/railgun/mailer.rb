@@ -100,6 +100,7 @@ module Railgun
     mb.subject mail.subject
     mb.body_html extract_body_html(mail)
     mb.body_text extract_body_text(mail)
+    mb.reply_to(mail[:reply_to].to_s) if mail[:reply_to].present?
 
     [:to, :cc, :bcc].each do |rcpt_type|
       addrs = mail[rcpt_type] || nil
